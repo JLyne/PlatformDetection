@@ -1,0 +1,8 @@
+name: PlatformDetection
+version: ${project.version}
+main: uk.co.notnull.platformdetection.PlatformDetectionPaper
+api-version: 1.16
+load: STARTUP
+description: Detects the platform/mod players are using
+depend: [PlaceholderAPI]
+softdepend: [floodgate-bukkit, Vivecraft-Spigot-Extensions]
