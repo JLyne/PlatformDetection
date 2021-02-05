@@ -5,7 +5,7 @@ import org.geysermc.floodgate.util.DeviceOS;
 @SuppressWarnings("unused")
 public enum Platform {
 	UNKNOWN("Unknown", '\uE1E1'),
-	JAVA("Java", '\uE1DD'),
+	JAVA("Java Edition", '\uE1DD'),
 	JAVA_FABRIC("Fabric", '\uE1DF', false, true),
 	JAVA_FORGE("Forge", '\uE1E0', false, true),
 	JAVA_VIVECRAFT("ViveCraft", '\uE1DC', false, true),
