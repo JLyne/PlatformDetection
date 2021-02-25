@@ -10,6 +10,7 @@ public enum Platform {
 	JAVA_FORGE("Forge", '\uE1E0', false, true),
 	JAVA_VIVECRAFT("ViveCraft", '\uE1DC', false, true),
 	JAVA_VIVECRAFT_NOVR("ViveCraft - No VR", '\uE1DE', false, true),
+	JAVA_LUNAR("Lunar Client", '\uE1E2', false, true),
 	BEDROCK("Bedrock Edition", '\uE11B', true, false),
 	BEDROCK_WINDOWS_10("Bedrock Edition - Windows 10", '\uE1D6', true, false),
 	BEDROCK_WINDOWS("Bedrock Edition - Windows", '\uE1D7', true, false),
@@ -106,6 +107,10 @@ public enum Platform {
 
 		if(brand.startsWith("fabric")) {
 			return JAVA_FABRIC;
+		}
+
+		if(brand.contains("lunarclient")) {
+			return JAVA_LUNAR;
 		}
 
 		return UNKNOWN;

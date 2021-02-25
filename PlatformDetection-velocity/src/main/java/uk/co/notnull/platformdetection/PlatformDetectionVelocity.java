@@ -74,6 +74,8 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 					platforms.put(connection.getPlayer(), Platform.JAVA_FORGE);
 				} else if(message.contains("vanilla")) {
 					platforms.put(connection.getPlayer(), Platform.JAVA);
+				} else if(message.contains("lunarclient")) {
+					platforms.put(connection.getPlayer(), Platform.JAVA_LUNAR);
 				}
 			}
 		}
