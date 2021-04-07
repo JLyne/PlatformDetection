@@ -49,12 +49,8 @@
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <repository>
-            <id>nukkitxsnapshots</id>
-            <url>https://repo.nukkitx.com/maven-snapshots</url>
-        </repository>
-        <repository>
-            <id>nukkitxreleases</id>
-            <url>https://repo.nukkitx.com/maven-releases</url>
+            <id>floodgate</id>
+            <url>https://repo.opencollab.dev/maven-snapshots</url>
         </repository>
     </repositories>
 
@@ -86,7 +82,7 @@
         <dependency>
             <groupId>org.vivecraft</groupId>
             <artifactId>Vivecraft_Spigot_Extensions</artifactId>
-            <version>1.16.3-r1</version>
+            <version>1.16.5-r1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

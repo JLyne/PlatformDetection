@@ -162,9 +162,8 @@
             <url>https://repo.spongepowered.org/maven</url>
         </repository>
         <repository>
-            <id>data-local</id>
-            <name>data</name>
-            <url>file://${project.basedir}/libs</url>
+            <id>floodgate-repo</id>
+            <url>https://repo.opencollab.dev/maven-snapshots</url>
         </repository>
     </repositories>
 
