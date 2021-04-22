@@ -1,6 +1,6 @@
 package uk.co.notnull.platformdetection;
 
-import org.geysermc.floodgate.util.DeviceOS;
+import org.geysermc.floodgate.util.DeviceOs;
 
 @SuppressWarnings("unused")
 public enum Platform {
@@ -12,13 +12,14 @@ public enum Platform {
 	JAVA_VIVECRAFT_NOVR("ViveCraft - No VR", '\uE1DE', false, true),
 	JAVA_LUNAR("Lunar Client", '\uE1E2', false, true),
 	BEDROCK("Bedrock Edition", '\uE11B', true, false),
-	BEDROCK_WINDOWS_10("Bedrock Edition - Windows 10", '\uE1D6', true, false),
-	BEDROCK_WINDOWS("Bedrock Edition - Windows", '\uE1D7', true, false),
-	BEDROCK_XBOX_ONE("Bedrock Edition - Xbox One", '\uE1DA', true, false),
+	BEDROCK_UWP("Bedrock Edition - Windows 10", '\uE1D6', true, false),
+	BEDROCK_WIN32("Bedrock Edition - Windows", '\uE1D7', true, false),
+	BEDROCK_XBOX("Bedrock Edition - Xbox", '\uE1DA', true, false),
 	BEDROCK_MACOS("Bedrock Edition - MacOS",'\uE1D2', true, false),
 	BEDROCK_IOS("Bedrock Edition - iOS", '\uE1D1', true, false),
+	BEDROCK_APPLE_TV("Bedrock Edition - AppleTV", '\uE1D1', true, false),
 	BEDROCK_ANDROID("Bedrock Edition - Android", '\uE1D0', true, false),
-	BEDROCK_FIREOS("Bedrock Edition - FireOS", '\uE1D3', true, false),
+	BEDROCK_AMAZON("Bedrock Edition - Amazon", '\uE1D3', true, false),
 	BEDROCK_GEARVR("Bedrock Edition - GearVR", '\uE1D4', true, false),
 	BEDROCK_HOLOLENS("Bedrock Edition - HoloLens", '\uE1D5', true, false),
 	BEDROCK_PS4("Bedrock Edition - PS4", '\uE1D8', true, false),
@@ -60,32 +61,31 @@ public enum Platform {
 		return isModded;
 	}
 
-	public static Platform fromFloodgate(DeviceOS floodgateOs) {
+	public static Platform fromFloodgate(DeviceOs floodgateOs) {
 		switch(floodgateOs) {
-			case ANDROID:
+			case GOOGLE:
 				return BEDROCK_ANDROID;
 			case IOS:
 				return BEDROCK_IOS;
 			case OSX:
 				return BEDROCK_MACOS;
-			case FIREOS:
-				return BEDROCK_FIREOS;
+			case AMAZON:
+				return BEDROCK_AMAZON;
 			case GEARVR:
 				return BEDROCK_GEARVR;
 			case HOLOLENS:
 				return BEDROCK_HOLOLENS;
-			case WIN10:
-				return BEDROCK_WINDOWS_10;
+			case UWP:
+				return BEDROCK_UWP;
 			case WIN32:
-				return BEDROCK_WINDOWS;
-			case ORBIS:
+				return BEDROCK_WIN32;
+			case PS4:
 				return BEDROCK_PS4;
 			case NX:
-			case SWITCH:
 				return BEDROCK_SWITCH;
-			case XBOX_ONE:
-				return BEDROCK_XBOX_ONE;
-			case WIN_PHONE:
+			case XBOX:
+				return BEDROCK_XBOX;
+			case WINDOWS_PHONE:
 				return BEDROCK_WINDOWS_PHONE;
 			default:
 				return UNKNOWN;

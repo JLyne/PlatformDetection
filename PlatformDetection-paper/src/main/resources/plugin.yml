@@ -5,4 +5,4 @@ api-version: 1.16
 load: STARTUP
 description: Detects the platform/mod players are using
 depend: [PlaceholderAPI]
-softdepend: [floodgate-bukkit, Vivecraft-Spigot-Extensions]
+softdepend: [floodgate, Vivecraft-Spigot-Extensions]

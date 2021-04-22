@@ -14,7 +14,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.messages.ChannelIdentifier;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
-import org.geysermc.floodgate.FloodgateAPI;
+import org.geysermc.floodgate.api.FloodgateApi;
 import org.slf4j.Logger;
 
 import java.util.Optional;
@@ -39,6 +39,7 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 
 	private boolean floodgateEnabled = false;
 	private boolean vivecraftEnabled = false;
+	private FloodgateApi floodgateApi;
 
 	private ConcurrentHashMap<Player, Platform> platforms;
 	private final ChannelIdentifier platformChannel = MinecraftChannelIdentifier.create("platform", "brand");
@@ -48,6 +49,10 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 		platforms = new ConcurrentHashMap<>();
 		floodgateEnabled = proxy.getPluginManager().isLoaded("floodgate");
 		vivecraftEnabled = proxy.getPluginManager().isLoaded("vivecraft-velocity-extensions");
+
+		if(floodgateEnabled) {
+			floodgateApi = FloodgateApi.getInstance();
+		}
 
 		proxy.getChannelRegistrar().register(platformChannel);
 	}
@@ -99,8 +104,8 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 				return value;
 			}
 
-			if(isFloodgateEnabled() && FloodgateAPI.isBedrockPlayer(player)) {
-				return Platform.fromFloodgate(FloodgateAPI.getPlayer(player).getDeviceOS());
+			if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
+				return Platform.fromFloodgate(floodgateApi.getPlayer(player.getUniqueId()).getDeviceOs());
 			}
 
 			if(isVivecraftEnabled() && VivecraftAPI.isVive(player)) {
@@ -124,8 +129,8 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 	}
 
 	public String getPlatformVersion(Player player) {
-		if(isFloodgateEnabled() && FloodgateAPI.isBedrockPlayer(player)) {
-			return FloodgateAPI.getPlayer(player).getVersion();
+		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
+			return floodgateApi.getPlayer(player.getUniqueId()).getVersion();
 		}
 
 		return String.valueOf(player.getProtocolVersion().getName());

@@ -9,7 +9,7 @@ import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.MessageTooLargeException;
 import org.bukkit.plugin.messaging.PluginMessageListener;
-import org.geysermc.floodgate.FloodgateAPI;
+import org.geysermc.floodgate.api.FloodgateApi;
 import org.jetbrains.annotations.NotNull;
 import org.vivecraft.VSE;
 
@@ -20,13 +20,19 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 	private boolean floodgateEnabled = false;
 	private boolean vivecraftEnabled = false;
 
+	private FloodgateApi floodgateApi;
+
 	@Override
 	public void onEnable () {
 		expansion = new PlatformPlaceholders(this);
 		expansion.register();
 
-		floodgateEnabled = getServer().getPluginManager().isPluginEnabled("floodgate-bukkit");
+		floodgateEnabled = getServer().getPluginManager().isPluginEnabled("floodgate");
 		vivecraftEnabled = getServer().getPluginManager().isPluginEnabled("Vivecraft-Spigot-Extensions");
+
+		if(floodgateEnabled) {
+			floodgateApi = FloodgateApi.getInstance();
+		}
 
 		getServer().getPluginManager().registerEvents(this, this);
 		getServer().getMessenger().registerIncomingPluginChannel(this, "minecraft:brand", this);
@@ -42,7 +48,7 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 
 	@EventHandler
 	public void onPluginEnable(PluginEnableEvent event) {
-		if(event.getPlugin().getName().equals("floodgate-bukkit")) {
+		if(event.getPlugin().getName().equals("floodgate")) {
 			floodgateEnabled = true;
 		}
 
@@ -53,7 +59,7 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 
 	@EventHandler
 	public void onPluginDisable(PluginDisableEvent event) {
-		if(event.getPlugin().getName().equals("floodgate-bukkit")) {
+		if(event.getPlugin().getName().equals("floodgate")) {
 			floodgateEnabled = false;
 		}
 
@@ -80,8 +86,8 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 			return Platform.UNKNOWN;
 		}
 
-		if(isFloodgateEnabled() && FloodgateAPI.isBedrockPlayer(player)) {
-			return Platform.fromFloodgate(FloodgateAPI.getPlayer(player).getDeviceOS());
+		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
+			return Platform.fromFloodgate(floodgateApi.getPlayer(player.getUniqueId()).getDeviceOs());
 		}
 
 		if(isVivecraftEnabled() && VSE.vivePlayers.containsKey(player.getUniqueId())) {
@@ -106,8 +112,8 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 	}
 
 	public String getPlatformVersion(Player player) {
-		if(isFloodgateEnabled() && FloodgateAPI.isBedrockPlayer(player)) {
-			return FloodgateAPI.getPlayer(player).getVersion();
+		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
+			return floodgateApi.getPlayer(player.getUniqueId()).getVersion();
 		}
 
 		return String.valueOf(player.getProtocolVersion());
