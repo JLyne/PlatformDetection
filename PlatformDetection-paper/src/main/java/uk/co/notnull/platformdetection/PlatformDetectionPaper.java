@@ -23,16 +23,16 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 	private FloodgateApi floodgateApi;
 
 	@Override
-	public void onEnable () {
-		expansion = new PlatformPlaceholders(this);
-		expansion.register();
-
+	public void onEnable() {
 		floodgateEnabled = getServer().getPluginManager().isPluginEnabled("floodgate");
 		vivecraftEnabled = getServer().getPluginManager().isPluginEnabled("Vivecraft-Spigot-Extensions");
 
 		if(floodgateEnabled) {
 			floodgateApi = FloodgateApi.getInstance();
 		}
+
+		expansion = new PlatformPlaceholders(this);
+		expansion.register();
 
 		getServer().getPluginManager().registerEvents(this, this);
 		getServer().getMessenger().registerIncomingPluginChannel(this, "minecraft:brand", this);
@@ -73,18 +73,12 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 		expansion.unregister();
 	}
 
-	public boolean isFloodgateEnabled() {
-		return floodgateEnabled;
-	}
-
-	public boolean isVivecraftEnabled() {
-		return vivecraftEnabled;
-	}
-
 	public Platform getPlatform(Player player) {
 		if(player == null || !player.isOnline()) {
 			return Platform.UNKNOWN;
 		}
+
+		loadFloodgateApi();
 
 		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
 			return Platform.fromFloodgate(floodgateApi.getPlayer(player.getUniqueId()).getDeviceOs());
@@ -112,6 +106,8 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 	}
 
 	public String getPlatformVersion(Player player) {
+		loadFloodgateApi();
+
 		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
 			return floodgateApi.getPlayer(player.getUniqueId()).getVersion();
 		}
@@ -131,5 +127,25 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 		}
 
 		return getPlatformVersion(player);
+	}
+
+	private void loadFloodgateApi() {
+		if(!floodgateEnabled) {
+			return;
+		}
+
+		if(floodgateApi != null) {
+			return;
+		}
+
+		floodgateApi = FloodgateApi.getInstance();
+	}
+
+	public boolean isFloodgateEnabled() {
+		return floodgateEnabled;
+	}
+
+	public boolean isVivecraftEnabled() {
+		return vivecraftEnabled;
 	}
 }

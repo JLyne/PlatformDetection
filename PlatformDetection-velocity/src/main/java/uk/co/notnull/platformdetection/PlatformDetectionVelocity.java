@@ -86,18 +86,12 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 		}
 	}
 
-	public boolean isFloodgateEnabled() {
-		return floodgateEnabled;
-	}
-
-	public boolean isVivecraftEnabled() {
-		return vivecraftEnabled;
-	}
-
 	public Platform getPlatform(Player player) {
 		if(player == null || !player.isActive()) {
 			return Platform.UNKNOWN;
 		}
+
+		loadFloodgateApi();
 
 		Platform platform = platforms.compute(player, (Player key, Platform value) -> {
 			if(value != null && !value.equals(Platform.JAVA)) {
@@ -129,6 +123,8 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 	}
 
 	public String getPlatformVersion(Player player) {
+		loadFloodgateApi();
+
 		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
 			return floodgateApi.getPlayer(player.getUniqueId()).getVersion();
 		}
@@ -142,5 +138,25 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 		}
 
 		return proxy.getPlayer(uuid).map(this::getPlatformVersion).orElse(null);
+	}
+
+	private void loadFloodgateApi() {
+		if(!floodgateEnabled) {
+			return;
+		}
+
+		if(floodgateApi != null) {
+			return;
+		}
+
+		floodgateApi = FloodgateApi.getInstance();
+	}
+
+	public boolean isFloodgateEnabled() {
+		return floodgateEnabled;
+	}
+
+	public boolean isVivecraftEnabled() {
+		return vivecraftEnabled;
 	}
 }
