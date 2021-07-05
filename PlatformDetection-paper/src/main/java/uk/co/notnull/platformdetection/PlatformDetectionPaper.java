@@ -9,26 +9,27 @@ import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.MessageTooLargeException;
 import org.bukkit.plugin.messaging.PluginMessageListener;
-import org.geysermc.floodgate.api.FloodgateApi;
 import org.jetbrains.annotations.NotNull;
-import org.vivecraft.VSE;
 
 import java.util.UUID;
 
 public final class PlatformDetectionPaper extends JavaPlugin implements Listener, PlatformDetectionPlugin<Player>, PluginMessageListener {
 	private PlatformPlaceholders expansion;
-	private boolean floodgateEnabled = false;
-	private boolean vivecraftEnabled = false;
 
-	private FloodgateApi floodgateApi;
+	private FloodgateHandler<Player> floodgateHandler;
+	private VivecraftHandler<Player> vivecraftHandler;
 
 	@Override
 	public void onEnable() {
-		floodgateEnabled = getServer().getPluginManager().isPluginEnabled("floodgate");
-		vivecraftEnabled = getServer().getPluginManager().isPluginEnabled("Vivecraft-Spigot-Extensions");
+		boolean floodgateEnabled = getServer().getPluginManager().isPluginEnabled("floodgate");
+		boolean vivecraftEnabled = getServer().getPluginManager().isPluginEnabled("Vivecraft-Spigot-Extensions");
 
 		if(floodgateEnabled) {
-			floodgateApi = FloodgateApi.getInstance();
+			floodgateHandler = new FloodgateHandlerPaper();
+		}
+
+		if(vivecraftEnabled) {
+			vivecraftHandler = new VivecraftHandlerPaper();
 		}
 
 		expansion = new PlatformPlaceholders(this);
@@ -49,22 +50,22 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 	@EventHandler
 	public void onPluginEnable(PluginEnableEvent event) {
 		if(event.getPlugin().getName().equals("floodgate")) {
-			floodgateEnabled = true;
+			floodgateHandler = new FloodgateHandlerPaper();
 		}
 
 		if(event.getPlugin().getName().equals("Vivecraft-Spigot-Extensions")) {
-			vivecraftEnabled = true;
+			vivecraftHandler = new VivecraftHandlerPaper();
 		}
 	}
 
 	@EventHandler
 	public void onPluginDisable(PluginDisableEvent event) {
 		if(event.getPlugin().getName().equals("floodgate")) {
-			floodgateEnabled = false;
+			floodgateHandler = null;
 		}
 
 		if(event.getPlugin().getName().equals("Vivecraft-Spigot-Extensionst")) {
-			vivecraftEnabled = false;
+			vivecraftHandler = null;
 		}
 	}
 
@@ -78,14 +79,12 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 			return Platform.UNKNOWN;
 		}
 
-		loadFloodgateApi();
-
-		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
-			return Platform.fromFloodgate(floodgateApi.getPlayer(player.getUniqueId()).getDeviceOs());
+		if(isFloodgateEnabled() && floodgateHandler.isFloodgatePlayer(player)) {
+			return floodgateHandler.getPlatform(player);
 		}
 
-		if(isVivecraftEnabled() && VSE.vivePlayers.containsKey(player.getUniqueId())) {
-			return VSE.isVive(player) ? Platform.JAVA_VIVECRAFT : Platform.JAVA_VIVECRAFT_NOVR;
+		if(isVivecraftEnabled() && vivecraftHandler.isVivecraftPlayer(player)) {
+			return vivecraftHandler.getPlatform(player);
 		}
 
 		return Platform.fromClientBrand(player.getClientBrandName());
@@ -106,10 +105,8 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 	}
 
 	public String getPlatformVersion(Player player) {
-		loadFloodgateApi();
-
-		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
-			return floodgateApi.getPlayer(player.getUniqueId()).getVersion();
+		if(isFloodgateEnabled() && floodgateHandler.isFloodgatePlayer(player)) {
+			return floodgateHandler.getPlatformVersion(player);
 		}
 
 		return String.valueOf(player.getProtocolVersion());
@@ -129,23 +126,11 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 		return getPlatformVersion(player);
 	}
 
-	private void loadFloodgateApi() {
-		if(!floodgateEnabled) {
-			return;
-		}
-
-		if(floodgateApi != null) {
-			return;
-		}
-
-		floodgateApi = FloodgateApi.getInstance();
-	}
-
 	public boolean isFloodgateEnabled() {
-		return floodgateEnabled;
+		return floodgateHandler != null;
 	}
 
 	public boolean isVivecraftEnabled() {
-		return vivecraftEnabled;
+		return vivecraftHandler != null;
 	}
 }

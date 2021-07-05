@@ -3,7 +3,6 @@ package uk.co.notnull.platformdetection;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import com.google.inject.Inject;
-import com.techjar.vbe.VivecraftAPI;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
@@ -14,7 +13,6 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.messages.ChannelIdentifier;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
-import org.geysermc.floodgate.api.FloodgateApi;
 import org.slf4j.Logger;
 
 import java.util.Optional;
@@ -37,9 +35,8 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 	@Inject
 	private ProxyServer proxy;
 
-	private boolean floodgateEnabled = false;
-	private boolean vivecraftEnabled = false;
-	private FloodgateApi floodgateApi;
+	private VivecraftHandlerVelocity vivecraftHandler;
+	private FloodgateHandlerVelocity floodgateHandler;
 
 	private ConcurrentHashMap<Player, Platform> platforms;
 	private final ChannelIdentifier platformChannel = MinecraftChannelIdentifier.create("platform", "brand");
@@ -47,11 +44,16 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 	@Subscribe
 	public void onProxyInitialization(ProxyInitializeEvent event) {
 		platforms = new ConcurrentHashMap<>();
-		floodgateEnabled = proxy.getPluginManager().isLoaded("floodgate");
-		vivecraftEnabled = proxy.getPluginManager().isLoaded("vivecraft-velocity-extensions");
+
+		boolean floodgateEnabled = proxy.getPluginManager().isLoaded("floodgate");
+		boolean vivecraftEnabled = proxy.getPluginManager().isLoaded("vivecraft-velocity-extensions");
 
 		if(floodgateEnabled) {
-			floodgateApi = FloodgateApi.getInstance();
+			floodgateHandler = new FloodgateHandlerVelocity();
+		}
+
+		if(vivecraftEnabled) {
+			vivecraftHandler = new VivecraftHandlerVelocity();
 		}
 
 		proxy.getChannelRegistrar().register(platformChannel);
@@ -91,19 +93,17 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 			return Platform.UNKNOWN;
 		}
 
-		loadFloodgateApi();
-
 		Platform platform = platforms.compute(player, (Player key, Platform value) -> {
 			if(value != null && !value.equals(Platform.JAVA)) {
 				return value;
 			}
 
-			if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
-				return Platform.fromFloodgate(floodgateApi.getPlayer(player.getUniqueId()).getDeviceOs());
+			if(isFloodgateEnabled() && floodgateHandler.isFloodgatePlayer(player)) {
+				return floodgateHandler.getPlatform(player);
 			}
 
-			if(isVivecraftEnabled() && VivecraftAPI.isVive(player)) {
-				return VivecraftAPI.isVR(player) ? Platform.JAVA_VIVECRAFT : Platform.JAVA_VIVECRAFT_NOVR;
+			if(isVivecraftEnabled() && vivecraftHandler.isVivecraftPlayer(player)) {
+				return vivecraftHandler.getPlatform(player);
 			}
 
 			return null;
@@ -123,10 +123,8 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 	}
 
 	public String getPlatformVersion(Player player) {
-		loadFloodgateApi();
-
-		if(isFloodgateEnabled() && floodgateApi.isFloodgatePlayer(player.getUniqueId())) {
-			return floodgateApi.getPlayer(player.getUniqueId()).getVersion();
+		if(isFloodgateEnabled() && floodgateHandler.isFloodgatePlayer(player)) {
+			return floodgateHandler.getPlatformVersion(player);
 		}
 
 		return String.valueOf(player.getProtocolVersion().getName());
@@ -140,23 +138,12 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 		return proxy.getPlayer(uuid).map(this::getPlatformVersion).orElse(null);
 	}
 
-	private void loadFloodgateApi() {
-		if(!floodgateEnabled) {
-			return;
-		}
-
-		if(floodgateApi != null) {
-			return;
-		}
-
-		floodgateApi = FloodgateApi.getInstance();
-	}
-
+	@Override
 	public boolean isFloodgateEnabled() {
-		return floodgateEnabled;
+		return floodgateHandler != null;
 	}
 
 	public boolean isVivecraftEnabled() {
-		return vivecraftEnabled;
+		return vivecraftHandler != null;
 	}
 }
