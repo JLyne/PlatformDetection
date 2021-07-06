@@ -127,7 +127,7 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 			return floodgateHandler.getPlatformVersion(player);
 		}
 
-		return String.valueOf(player.getProtocolVersion().getName());
+		return String.valueOf(player.getProtocolVersion().getVersionIntroducedIn());
 	}
 
 	public String getPlatformVersion(UUID uuid) {
