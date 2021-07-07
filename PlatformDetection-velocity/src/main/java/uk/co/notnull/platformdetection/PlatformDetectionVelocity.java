@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+@SuppressWarnings("unused")
 @Plugin(
 		id = "platform-detection",
 		name = "PlatformDetection",
@@ -71,6 +72,7 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 				ServerConnection connection = (ServerConnection) event.getSource();
 
 				// Read the data written to the message
+				//noinspection UnstableApiUsage
 				ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
 				// Example:
 				String message = in.readLine();
@@ -115,7 +117,7 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 	public Platform getPlatform(UUID uuid) {
 		Optional<Player> player = proxy.getPlayer(uuid);
 
-		if(!player.isPresent()) {
+		if(player.isEmpty()) {
 			return Platform.UNKNOWN;
 		}
 

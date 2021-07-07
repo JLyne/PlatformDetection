@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
+@SuppressWarnings("unused")
 public final class PlatformDetectionPaper extends JavaPlugin implements Listener, PlatformDetectionPlugin<Player>, PluginMessageListener {
 	private PlatformPlaceholders expansion;
 
