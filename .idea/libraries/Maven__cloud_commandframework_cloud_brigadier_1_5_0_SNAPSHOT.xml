@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: cloud.commandframework:cloud-brigadier:1.5.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/cloud/commandframework/cloud-brigadier/1.5.0-SNAPSHOT/cloud-brigadier-1.5.0-20210705.094210-58.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/cloud/commandframework/cloud-brigadier/1.5.0-SNAPSHOT/cloud-brigadier-1.5.0-20210705.094210-58-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/cloud/commandframework/cloud-brigadier/1.5.0-SNAPSHOT/cloud-brigadier-1.5.0-20210705.094210-58-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
