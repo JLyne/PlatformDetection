@@ -1,0 +1,17 @@
+{
+  "id": "platform-detection",
+  "name": "PlatformDetection",
+  "version": "@project.version@",
+  "authors": ["Jim (NotKatuen)"],
+  "dependencies": [
+    {
+      "id": "floodgate",
+      "optional": true
+    },
+    {
+      "id": "vivecraft-velocity-extensions",
+      "optional": true
+    }
+  ],
+  "main": "uk.co.notnull.platformdetection.PlatformDetectionVelocity"
+}

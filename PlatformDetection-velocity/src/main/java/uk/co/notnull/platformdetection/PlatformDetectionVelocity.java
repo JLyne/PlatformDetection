@@ -20,15 +20,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SuppressWarnings("unused")
-@Plugin(
-		id = "platform-detection",
-		name = "PlatformDetection",
-		version = "1.0-SNAPSHOT",
-		dependencies = {
-				@Dependency(id = "floodgate", optional = true),
-				@Dependency(id = "vivecraft-velocity-extensions", optional = true)
-		}
-)
 public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player> {
 	@Inject
 	private Logger logger;
