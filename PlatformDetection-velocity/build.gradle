@@ -3,9 +3,7 @@
  */
 
 plugins {
-    id 'uk.co.notnull.java-conventions'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
-    id 'maven-publish'
 }
 
 dependencies {
@@ -13,12 +11,10 @@ dependencies {
 
     compileOnly 'com.velocitypowered:velocity-api:3.0.0-SNAPSHOT'
     compileOnly 'org.geysermc.floodgate:velocity:2.0-SNAPSHOT'
-    compileOnly 'com.techjar.vbe:vivecraft-velocity-extensions:1.1'
+    compileOnly 'uk.co.notnull:VivecraftVelocityExtensions:1.1'
 
     annotationProcessor 'com.velocitypowered:velocity-api:3.0.0'
 }
-
-description = 'PlatformDetection Velocity'
 
 tasks {
     shadowJar {
@@ -27,13 +23,5 @@ tasks {
 
     build {
         dependsOn(shadowJar)
-    }
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-        }
     }
 }

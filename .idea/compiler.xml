@@ -42,6 +42,9 @@
       <module name="PlatformDetection-common" target="11" />
       <module name="PlatformDetection-paper" target="16" />
       <module name="PlatformDetection-velocity" target="11" />
+      <module name="PlatformDetection.buildSrc" target="16" />
+      <module name="PlatformDetection.buildSrc.main" target="16" />
+      <module name="PlatformDetection.buildSrc.test" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

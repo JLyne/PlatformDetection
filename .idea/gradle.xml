@@ -9,10 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/platformdetection-common" />
-            <option value="$PROJECT_DIR$/platformdetection-paper" />
-            <option value="$PROJECT_DIR$/platformdetection-velocity" />
+            <option value="$PROJECT_DIR$/PlatformDetection-common" />
+            <option value="$PROJECT_DIR$/PlatformDetection-paper" />
+            <option value="$PROJECT_DIR$/PlatformDetection-velocity" />
           </set>
         </option>
       </GradleProjectSettings>

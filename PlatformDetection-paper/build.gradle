@@ -3,9 +3,7 @@
  */
 
 plugins {
-    id 'uk.co.notnull.java-conventions'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
-    id 'maven-publish'
 }
 
 dependencies {
@@ -17,8 +15,6 @@ dependencies {
     compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.16.5-r1'
 }
 
-description = 'PlatformDetection Paper'
-
 java.sourceCompatibility = JavaVersion.VERSION_16
 java.targetCompatibility = JavaVersion.VERSION_16
 
@@ -29,13 +25,5 @@ tasks {
 
     build {
         dependsOn(shadowJar)
-    }
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-        }
     }
 }

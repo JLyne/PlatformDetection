@@ -1,0 +1,116 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+rootProject.ext.mavenUserName=""
+rootProject.ext.mavenPassword=""
+
+if (file("./build.gradle.local").exists()) {
+    apply from: "./build.gradle.local"
+}
+
+allprojects {
+    group = 'uk.co.notnull'
+    version = '2.1-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+        maven {
+            url 'https://repo.not-null.co.uk/releases/'
+        }
+
+        maven {
+            url 'https://nexus.velocitypowered.com/repository/maven-public/'
+        }
+
+        maven {
+            url 'https://papermc.io/repo/repository/maven-public/'
+        }
+
+        maven {
+            url 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        }
+
+        maven {
+            url 'https://repo.opencollab.dev/maven-snapshots/'
+        }
+
+        maven {
+            url 'https://repo.nukkitx.com/maven-releases/'
+        }
+
+        maven {
+            url 'https://repo.incendo.org/content/repositories/snapshots'
+        }
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                pom {
+                    description = 'Simple plugin for making a decent guess at a Minecraft player\'s platform'
+                    url = 'https://github.com/JLyne/PlatformDetection'
+                    developers {
+                        developer {
+                            id = 'jim'
+                            name = 'James Lyne'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/JLyne/PlatformDetection.git'
+                        developerConnection = 'scm:git:ssh://github.com/JLyne/PlatformDetection.git'
+                        url = 'https://github.com/JLyne/PlatformDetection'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    username = rootProject.ext.mavenUserName
+                    password = rootProject.ext.mavenPassword
+                }
+                authentication {
+                    basic(BasicAuthentication)
+                }
+
+                def releasesRepoUrl = "https://repo.not-null.co.uk/releases/" // gradle -Prelease publish
+                def snapshotsRepoUrl = "https://repo.not-null.co.uk/snapshots/"
+                url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+            }
+        }
+    }
+}
+
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
+
+tasks {
+    processResources {
+        from("${project.rootDir}/src/main/resources") {
+            project.properties.findAll().each {
+                prop ->
+                    if (prop.value != null && prop.value instanceof java.lang.String) {
+                        filter(ReplaceTokens, tokens: [(prop.key): prop.value])
+                        filter(ReplaceTokens, tokens: [('project.' + prop.key): prop.value])
+                    }
+            }
+        }
+    }
+
+    compileJava {
+        options.compilerArgs += ["-Xlint:all", "-Xlint:-processing"]
+        options.encoding = 'UTF-8'
+    }
+}
