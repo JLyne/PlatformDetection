@@ -1,16 +1,11 @@
 package uk.co.notnull.platformdetection;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
 import com.google.inject.Inject;
-import com.velocitypowered.api.event.connection.PluginMessageEvent;
+import com.velocitypowered.api.event.player.PlayerClientBrandEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
-import com.velocitypowered.api.plugin.Dependency;
-import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
-import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.messages.ChannelIdentifier;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import org.slf4j.Logger;
@@ -52,32 +47,17 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 	}
 
 	@Subscribe
-	public void onPluginMessageEvent(PluginMessageEvent event) {
-		// Received plugin message, check channel identifier matches
-		if (event.getIdentifier().equals(platformChannel)) {
-			// Since this message was meant for this listener set it to handled
-			// We do this so the message doesn't get routed through.
-			event.setResult(PluginMessageEvent.ForwardResult.handled());
+	public void onClientBrand(PlayerClientBrandEvent event) {
+		String brand = event.getBrand();
 
-			if (event.getSource() instanceof ServerConnection) {
-				ServerConnection connection = (ServerConnection) event.getSource();
-
-				// Read the data written to the message
-				//noinspection UnstableApiUsage
-				ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
-				// Example:
-				String message = in.readLine();
-
-				if(message.contains("fabric")) {
-					platforms.put(connection.getPlayer(), Platform.JAVA_FABRIC);
-				} else if(message.contains("forge")) {
-					platforms.put(connection.getPlayer(), Platform.JAVA_FORGE);
-				} else if(message.contains("vanilla")) {
-					platforms.put(connection.getPlayer(), Platform.JAVA);
-				} else if(message.contains("lunarclient")) {
-					platforms.put(connection.getPlayer(), Platform.JAVA_LUNAR);
-				}
-			}
+		if(brand.contains("fabric")) {
+			platforms.put(event.getPlayer(), Platform.JAVA_FABRIC);
+		} else if(brand.contains("forge")) {
+			platforms.put(event.getPlayer(), Platform.JAVA_FORGE);
+		} else if(brand.contains("vanilla")) {
+			platforms.put(event.getPlayer(), Platform.JAVA);
+		} else if(brand.contains("lunarclient")) {
+			platforms.put(event.getPlayer(), Platform.JAVA_LUNAR);
 		}
 	}
 

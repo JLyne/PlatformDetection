@@ -7,14 +7,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.MessageTooLargeException;
-import org.bukkit.plugin.messaging.PluginMessageListener;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
 @SuppressWarnings("unused")
-public final class PlatformDetectionPaper extends JavaPlugin implements Listener, PlatformDetectionPlugin<Player>, PluginMessageListener {
+public final class PlatformDetectionPaper extends JavaPlugin implements Listener, PlatformDetectionPlugin<Player> {
 	private PlatformPlaceholders expansion;
 
 	private FloodgateHandler<Player> floodgateHandler;
@@ -37,15 +34,6 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 		expansion.register();
 
 		getServer().getPluginManager().registerEvents(this, this);
-		getServer().getMessenger().registerIncomingPluginChannel(this, "minecraft:brand", this);
-		getServer().getMessenger().registerOutgoingPluginChannel(this, "platform:brand");
-	}
-
-	@Override
-	public void onPluginMessageReceived(@NotNull String channel, @NotNull Player player, byte[] message) {
-		try {
-			player.sendPluginMessage(this, "platform:brand", message);
-		} catch(IllegalArgumentException|MessageTooLargeException ignored) {}
 	}
 
 	@EventHandler
