@@ -6,3 +6,5 @@ rootProject.name = 'PlatformDetection'
 include(':PlatformDetection-velocity')
 include(':PlatformDetection-paper')
 include(':PlatformDetection-common')
+project(":PlatformDetection-paper").projectDir = file('PlatformDetection-paper')
+project(":PlatformDetection-velocity").projectDir = file('PlatformDetection-velocity')
