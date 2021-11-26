@@ -9,14 +9,14 @@ plugins {
 dependencies {
     implementation project(':PlatformDetection-common')
 
-    compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT'
     compileOnly 'me.clip:placeholderapi:2.10.9'
     compileOnly 'org.geysermc.floodgate:spigot:2.0-SNAPSHOT'
-    compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.16.5-r1'
+    compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.17.1-b2'
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_16
-java.targetCompatibility = JavaVersion.VERSION_16
+java.sourceCompatibility = JavaVersion.VERSION_17
+java.targetCompatibility = JavaVersion.VERSION_17
 
 tasks {
     shadowJar {

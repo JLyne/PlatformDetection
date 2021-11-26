@@ -2,7 +2,7 @@ name: PlatformDetection
 version: @project.version@
 main: uk.co.notnull.platformdetection.PlatformDetectionPaper
 author: Jim (NotKatuen)
-api-version: 1.16
+api-version: 1.17
 load: STARTUP
 description: Detects the platform/mod players are using
 depend: [PlaceholderAPI]
