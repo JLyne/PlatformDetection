@@ -101,11 +101,11 @@ public enum Platform {
 			return JAVA;
 		}
 
-		if(brand.startsWith("forge")) {
+		if(brand.contains("forge")) {
 			return JAVA_FORGE;
 		}
 
-		if(brand.startsWith("fabric")) {
+		if(brand.contains("fabric")) {
 			return JAVA_FABRIC;
 		}
 
