@@ -11,6 +11,7 @@ public enum Platform {
 	JAVA_VIVECRAFT("ViveCraft", '\uE1DC', false, true),
 	JAVA_VIVECRAFT_NOVR("ViveCraft - No VR", '\uE1DE', false, true),
 	JAVA_LUNAR("Lunar Client", '\uE1E2', false, true),
+	JAVA_QUILT("Quilt", '\uE1E5', false, true),
 	BEDROCK("Bedrock Edition", '\uE11B', true, false),
 	BEDROCK_UWP("Bedrock Edition - Windows 10", '\uE1D6', true, false),
 	BEDROCK_WIN32("Bedrock Edition - Windows", '\uE1D7', true, false),
@@ -111,6 +112,10 @@ public enum Platform {
 
 		if(brand.contains("lunarclient")) {
 			return JAVA_LUNAR;
+		}
+
+		if(brand.contains("quilt")) {
+			return JAVA_QUILT;
 		}
 
 		return UNKNOWN;

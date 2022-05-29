@@ -58,6 +58,8 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 			platforms.put(event.getPlayer(), Platform.JAVA);
 		} else if(brand.contains("lunarclient")) {
 			platforms.put(event.getPlayer(), Platform.JAVA_LUNAR);
+		} else if(brand.contains("quilt")) {
+			platforms.put(event.getPlayer(), Platform.JAVA_QUILT);
 		}
 	}
 
