@@ -3,8 +3,7 @@
  */
 
 dependencies {
-    compileOnly 'org.geysermc.floodgate:common:2.0-SNAPSHOT'
-    compileOnly 'org.geysermc.floodgate:api:2.0-SNAPSHOT'
+    compileOnly 'org.geysermc.floodgate:api:2.2.0-SNAPSHOT'
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_11
