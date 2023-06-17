@@ -4,20 +4,17 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 dependencies {
     implementation project(':PlatformDetection-common')
 
-    compileOnly 'io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT'
-    compileOnly 'me.clip:placeholderapi:2.10.9'
+    compileOnly 'io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT'
+    compileOnly 'me.clip:placeholderapi:2.11.3'
     compileOnly 'org.geysermc.floodgate:api:2.2.0-SNAPSHOT'
-    compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.17.1-b2'
+    compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.19.4-1'
 }
-
-java.sourceCompatibility = JavaVersion.VERSION_17
-java.targetCompatibility = JavaVersion.VERSION_17
 
 tasks {
     shadowJar {
