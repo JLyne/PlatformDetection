@@ -15,7 +15,7 @@ java.targetCompatibility = JavaVersion.VERSION_17
 
 allprojects {
     group = 'uk.co.notnull'
-    version = '2.1'
+    version = '2.2-SNAPSHOT'
 }
 
 subprojects {
