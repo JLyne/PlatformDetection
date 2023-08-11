@@ -48,19 +48,7 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 
 	@Subscribe
 	public void onClientBrand(PlayerClientBrandEvent event) {
-		String brand = event.getBrand();
-
-		if(brand.contains("fabric")) {
-			platforms.put(event.getPlayer(), Platform.JAVA_FABRIC);
-		} else if(brand.contains("forge")) {
-			platforms.put(event.getPlayer(), Platform.JAVA_FORGE);
-		} else if(brand.contains("vanilla")) {
-			platforms.put(event.getPlayer(), Platform.JAVA);
-		} else if(brand.contains("lunarclient")) {
-			platforms.put(event.getPlayer(), Platform.JAVA_LUNAR);
-		} else if(brand.contains("quilt")) {
-			platforms.put(event.getPlayer(), Platform.JAVA_QUILT);
-		}
+		platforms.put(event.getPlayer(), Platform.fromClientBrand(event.getBrand()));
 	}
 
 	public Platform getPlatform(Player player) {
