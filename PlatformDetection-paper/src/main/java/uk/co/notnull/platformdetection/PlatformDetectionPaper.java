@@ -53,7 +53,7 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 			floodgateHandler = null;
 		}
 
-		if(event.getPlugin().getName().equals("Vivecraft-Spigot-Extensionst")) {
+		if(event.getPlugin().getName().equals("Vivecraft-Spigot-Extensions")) {
 			vivecraftHandler = null;
 		}
 	}
