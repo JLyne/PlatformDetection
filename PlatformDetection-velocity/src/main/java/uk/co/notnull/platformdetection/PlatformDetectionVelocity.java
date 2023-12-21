@@ -48,7 +48,7 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 
 	@Subscribe
 	public void onClientBrand(PlayerClientBrandEvent event) {
-		platforms.put(event.getPlayer(), Platform.fromClientBrand(event.getBrand()));
+		platforms.remove(event.getPlayer());
 	}
 
 	public Platform getPlatform(Player player) {
@@ -69,7 +69,7 @@ public class PlatformDetectionVelocity implements PlatformDetectionPlugin<Player
 				return vivecraftHandler.getPlatform(player);
 			}
 
-			return null;
+			return Platform.fromClientBrand(player.getClientBrand());
 		});
 
 		return platform != null ? platform : Platform.JAVA;
