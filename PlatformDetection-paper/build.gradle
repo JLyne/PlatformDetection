@@ -10,9 +10,9 @@ plugins {
 dependencies {
     implementation project(':PlatformDetection-common')
 
-    compileOnly 'io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT'
-    compileOnly 'me.clip:placeholderapi:2.11.3'
-    compileOnly 'org.geysermc.floodgate:api:2.2.0-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT'
+    compileOnly 'me.clip:placeholderapi:2.11.5'
+    compileOnly 'org.geysermc.floodgate:api:2.2.2-SNAPSHOT'
     compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.19.4-1'
 }
 
