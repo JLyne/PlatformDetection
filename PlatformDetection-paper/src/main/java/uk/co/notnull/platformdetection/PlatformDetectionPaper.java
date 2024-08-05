@@ -19,48 +19,51 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 
 	@Override
 	public void onEnable() {
-		boolean floodgateEnabled = getServer().getPluginManager().isPluginEnabled("floodgate");
-		boolean vivecraftEnabled = getServer().getPluginManager().isPluginEnabled("Vivecraft-Spigot-Extensions");
-
-		if(floodgateEnabled) {
-			floodgateHandler = new FloodgateHandlerPaper();
-		}
-
-		if(vivecraftEnabled) {
-			vivecraftHandler = new VivecraftHandlerPaper();
-		}
-
-		expansion = new PlatformPlaceholders(this);
-		expansion.register();
-
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 
 	@EventHandler
 	public void onPluginEnable(PluginEnableEvent event) {
-		if(event.getPlugin().getName().equals("floodgate")) {
-			floodgateHandler = new FloodgateHandlerPaper();
-		}
-
-		if(event.getPlugin().getName().equals("Vivecraft-Spigot-Extensions")) {
-			vivecraftHandler = new VivecraftHandlerPaper();
+		switch (event.getPlugin().getName()) {
+			case "PlaceholderAPI" -> {
+				getLogger().info("Registering PlaceholderAPI expansion");
+				expansion = new PlatformPlaceholders(this);
+				expansion.register();
+			}
+			case "floodgate" -> {
+				getLogger().info("Initialising Floodgate handler");
+				floodgateHandler = new FloodgateHandlerPaper();
+			}
+			case "Vivecraft-Spigot-Extensions" -> {
+				getLogger().info("Initialising Vivecraft handler");
+				vivecraftHandler = new VivecraftHandlerPaper();
+			}
 		}
 	}
 
 	@EventHandler
 	public void onPluginDisable(PluginDisableEvent event) {
-		if(event.getPlugin().getName().equals("floodgate")) {
-			floodgateHandler = null;
-		}
-
-		if(event.getPlugin().getName().equals("Vivecraft-Spigot-Extensions")) {
-			vivecraftHandler = null;
+		switch (event.getPlugin().getName()) {
+			case "PlaceholderAPI" -> {
+				getLogger().info("Disabling PlaceholderAPI expansion");
+				expansion = null;
+			}
+			case "floodgate" -> {
+				getLogger().info("Disabling Floodgate handler");
+				floodgateHandler = null;
+			}
+			case "Vivecraft-Spigot-Extensions" -> {
+				getLogger().info("Disabling Vivecraft handler");
+				vivecraftHandler = null;
+			}
 		}
 	}
 
 	@Override
 	public void onDisable() {
-		expansion.unregister();
+		if(expansion != null) {
+			expansion.unregister();
+		}
 	}
 
 	public Platform getPlatform(Player player) {
