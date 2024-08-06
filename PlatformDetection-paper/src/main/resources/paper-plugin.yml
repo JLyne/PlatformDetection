@@ -9,11 +9,11 @@ description: Detects the platform/mod players are using
 dependencies:
   server:
     PlaceholderAPI:
-      load: BEFORE
+      load: AFTER
       required: false
     floodgate:
-      load: BEFORE
+      load: AFTER
       required: false
     Vivecraft-Spigot-Extensions:
-      load: BEFORE
+      load: AFTER
       required: false
