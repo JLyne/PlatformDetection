@@ -44,7 +44,7 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/3.3.0-SNAPSHOT/f2df936a9ad6818ff27597e43a399b4e3f5de65e/velocity-api-3.3.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/3.3.0-SNAPSHOT/91578f87dfa7e4d8bbac2b787824647752f5d7f3/velocity-api-3.3.0-SNAPSHOT.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/moandjiezana/toml/toml4j/0.7.2/toml4j-0.7.2.jar" />
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-ansi/4.17.0/9d16115f070690ffa730edc2d36f90267ae58013/adventure-text-serializer-ansi-4.17.0.jar" />
@@ -64,7 +64,7 @@
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.5/566c9b18953d9c7e916ab6823bf404899dccfefd/caffeine-3.1.5.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/spongepowered/configurate-hocon/4.1.2/configurate-hocon-4.1.2.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/spongepowered/configurate-core/4.1.2/configurate-core-4.1.2.jar" />
-          <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.42.0/638ec33f363a94d41a4f03c3e7d3dcfba64e402d/checker-qual-3.42.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/velocitypowered/velocity-brigadier/1.0.0-SNAPSHOT/velocity-brigadier-1.0.0-SNAPSHOT.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.18.0/error_prone_annotations-2.18.0.jar" />
