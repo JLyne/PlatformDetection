@@ -4,7 +4,7 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.gradleup.shadow' version '8.3.5'
 }
 
 dependencies {
@@ -12,8 +12,8 @@ dependencies {
 
     compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
     compileOnly 'me.clip:placeholderapi:2.11.6'
-    compileOnly 'org.geysermc.floodgate:api:2.2.2-SNAPSHOT'
-    compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.20.4-r2'
+    compileOnly 'org.geysermc.floodgate:api:2.2.3-SNAPSHOT'
+    compileOnly 'org.vivecraft:Vivecraft_Spigot_Extensions:1.21-r1'
 }
 
 tasks {
