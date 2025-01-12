@@ -1,0 +1,21 @@
+[versions]
+pluginYmlPaper = "0.6.0"
+paperApi = "1.21.4-R0.1-SNAPSHOT"
+velocityApi = "3.4.0-SNAPSHOT"
+floodgataApi = "2.2.3-SNAPSHOT"
+placeholderApi = "2.11.6"
+vivecraftSpigotExtensions = "1.21-r1"
+vivecraftVelocityExtensions = "1.1"
+shadow = "8.3.5"
+
+[libraries]
+paperApi = { group = "io.papermc.paper", name = "paper-api", version.ref = "paperApi" }
+velocityApi = { group = "com.velocitypowered", name = "velocity-api", version.ref="velocityApi" }
+floodgateApi = { group = "org.geysermc.floodgate", name = "api", version.ref="floodgataApi" }
+placeholderApi = { group = "me.clip", name = "placeholderapi", version.ref="placeholderApi" }
+vivecraftSpigotExtensions = { group = "org.vivecraft", name = "Vivecraft_Spigot_Extensions", version.ref="vivecraftSpigotExtensions" }
+vivecraftVelocityExtensions = { group = "uk.co.notnull", name = "VivecraftVelocityExtensions", version.ref="vivecraftVelocityExtensions" }
+
+[plugins]
+pluginYmlPaper = { id = "net.minecrell.plugin-yml.paper", version.ref = "pluginYmlPaper" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

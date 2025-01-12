@@ -1,8 +1,8 @@
 {
   "id": "platform-detection",
   "name": "PlatformDetection",
-  "version": "@project.version@",
-  "authors": ["Jim (NotKatuen)"],
+  "version": "${version}",
+  "authors": ["Jim (AnEnragedPigeon)"],
   "dependencies": [
     {
       "id": "floodgate",
