@@ -1,12 +1,12 @@
 [versions]
-pluginYmlPaper = "0.6.0"
+pluginYmlPaper = "0.7.1"
 paperApi = "1.21.4-R0.1-SNAPSHOT"
 velocityApi = "3.4.0-SNAPSHOT"
 floodgataApi = "2.2.3-SNAPSHOT"
 placeholderApi = "2.11.6"
 vivecraftSpigotExtensions = "1.21-r1"
 vivecraftVelocityExtensions = "1.1"
-shadow = "8.3.5"
+shadow = "8.3.6"
 
 [libraries]
 paperApi = { group = "io.papermc.paper", name = "paper-api", version.ref = "paperApi" }
@@ -17,5 +17,5 @@ vivecraftSpigotExtensions = { group = "org.vivecraft", name = "Vivecraft_Spigot_
 vivecraftVelocityExtensions = { group = "uk.co.notnull", name = "VivecraftVelocityExtensions", version.ref="vivecraftVelocityExtensions" }
 
 [plugins]
-pluginYmlPaper = { id = "net.minecrell.plugin-yml.paper", version.ref = "pluginYmlPaper" }
+pluginYmlPaper = { id = "de.eldoria.plugin-yml.paper", version.ref = "pluginYmlPaper" }
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
