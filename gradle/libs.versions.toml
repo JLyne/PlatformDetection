@@ -1,6 +1,6 @@
 [versions]
 pluginYmlPaper = "0.7.1"
-paperApi = "1.21.4-R0.1-SNAPSHOT"
+paperApi = "1.21.5-R0.1-SNAPSHOT"
 velocityApi = "3.4.0-SNAPSHOT"
 floodgataApi = "2.2.3-SNAPSHOT"
 placeholderApi = "2.11.6"
