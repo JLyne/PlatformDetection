@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
  * This class will be registered through the register-method in the
  * plugins onEnable-method.
  */
+@SuppressWarnings("UnstableApiUsage")
 public class PlatformPlaceholders extends PlaceholderExpansion {
     private final PlatformDetectionPaper plugin;
 
@@ -54,7 +55,7 @@ public class PlatformPlaceholders extends PlaceholderExpansion {
      */
     @Override
     public @NotNull String getAuthor() {
-        return plugin.getDescription().getAuthors().toString();
+        return plugin.getPluginMeta().getAuthors().toString();
     }
 
     /**
@@ -74,14 +75,13 @@ public class PlatformPlaceholders extends PlaceholderExpansion {
     /**
      * This is the version of the expansion.
      * <br>You don't have to use numbers, since it is set as a String.
-     *
      * For convenience do we return the version from the plugin.yml
      *
      * @return The version as a String.
      */
     @Override
     public @NotNull String getVersion() {
-        return plugin.getDescription().getVersion();
+        return plugin.getPluginMeta().getVersion();
     }
 
     /**
