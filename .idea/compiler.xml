@@ -44,7 +44,7 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/3.4.0-SNAPSHOT/6ed6d383f53b79504af0c0dd0a749b0be5f05a05/velocity-api-3.4.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/3.4.0-SNAPSHOT/e39fb65d9b4e8857340196b6bf3ce9d63ea5fe29/velocity-api-3.4.0-SNAPSHOT.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/moandjiezana/toml/toml4j/0.7.2/toml4j-0.7.2.jar" />
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-logger-slf4j/4.21.0/bc4882aec6f879d9427344fba8bd98e1d80da157/adventure-text-logger-slf4j-4.21.0.jar" />
