@@ -12,9 +12,6 @@ version = "2.3-SNAPSHOT"
 val libs = the<LibrariesForLibs>()
 
 repositories {
-    mavenLocal()
-    mavenCentral()
-
     maven {
         url = uri("https://repo.papermc.io/repository/maven-public/")
     }
@@ -30,6 +27,8 @@ repositories {
     maven {
         url = uri("https://repo.opencollab.dev/main/")
     }
+    mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
