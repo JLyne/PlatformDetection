@@ -27,7 +27,7 @@ repositories {
     maven {
         url = uri("https://repo.opencollab.dev/main/")
     }
-    mavenCentral()
+
     mavenLocal()
 }
 
