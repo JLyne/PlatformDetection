@@ -6,7 +6,7 @@ floodgataApi = "2.2.3-SNAPSHOT"
 placeholderApi = "2.11.6"
 vivecraftSpigotExtensions = "1.21-r1"
 vivecraftVelocityExtensions = "1.1"
-shadow = "8.3.6"
+shadow = "8.3.7"
 
 [libraries]
 paperApi = { group = "io.papermc.paper", name = "paper-api", version.ref = "paperApi" }
