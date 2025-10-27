@@ -11,7 +11,7 @@ dependencies {
 
     compileOnly(libs.paperApi)
     compileOnly(libs.placeholderApi)
-    compileOnly(libs.vivecraftSpigotExtensions)
+    compileOnly(files("../libs/Vivecraft-Spigot-Extension-1.3.3-0.jar"))
 }
 
 tasks {
@@ -38,7 +38,7 @@ paper {
             required = false
             load = PaperPluginDescription.RelativeLoadOrder.AFTER
         }
-        register("Vivecraft-Spigot-Extensions") {
+        register("Vivecraft-Spigot-Extension") {
             required = false
             load = PaperPluginDescription.RelativeLoadOrder.AFTER
         }

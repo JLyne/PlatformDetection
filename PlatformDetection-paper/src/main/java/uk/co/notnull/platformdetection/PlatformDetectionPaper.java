@@ -34,7 +34,7 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 				getLogger().info("Initialising Floodgate handler");
 				floodgateHandler = new FloodgateHandlerPaper();
 			}
-			case "Vivecraft-Spigot-Extensions" -> {
+			case "Vivecraft-Spigot-Extension" -> {
 				getLogger().info("Initialising Vivecraft handler");
 				vivecraftHandler = new VivecraftHandlerPaper();
 			}
@@ -52,7 +52,7 @@ public final class PlatformDetectionPaper extends JavaPlugin implements Listener
 				getLogger().info("Disabling Floodgate handler");
 				floodgateHandler = null;
 			}
-			case "Vivecraft-Spigot-Extensions" -> {
+			case "Vivecraft-Spigot-Extension" -> {
 				getLogger().info("Disabling Vivecraft handler");
 				vivecraftHandler = null;
 			}
