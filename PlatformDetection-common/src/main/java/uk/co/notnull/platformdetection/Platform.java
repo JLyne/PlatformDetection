@@ -64,34 +64,21 @@ public enum Platform {
 	}
 
 	public static Platform fromFloodgate(DeviceOs floodgateOs) {
-		switch(floodgateOs) {
-			case GOOGLE:
-				return BEDROCK_ANDROID;
-			case IOS:
-				return BEDROCK_IOS;
-			case OSX:
-				return BEDROCK_MACOS;
-			case AMAZON:
-				return BEDROCK_AMAZON;
-			case GEARVR:
-				return BEDROCK_GEARVR;
-			case HOLOLENS:
-				return BEDROCK_HOLOLENS;
-			case UWP:
-				return BEDROCK_UWP;
-			case WIN32:
-				return BEDROCK_WIN32;
-			case PS4:
-				return BEDROCK_PS4;
-			case NX:
-				return BEDROCK_SWITCH;
-			case XBOX:
-				return BEDROCK_XBOX;
-			case WINDOWS_PHONE:
-				return BEDROCK_WINDOWS_PHONE;
-			default:
-				return UNKNOWN;
-		}
+		return switch (floodgateOs) {
+			case GOOGLE -> BEDROCK_ANDROID;
+			case IOS -> BEDROCK_IOS;
+			case OSX -> BEDROCK_MACOS;
+			case AMAZON -> BEDROCK_AMAZON;
+			case GEARVR -> BEDROCK_GEARVR;
+			case HOLOLENS -> BEDROCK_HOLOLENS;
+			case UWP -> BEDROCK_UWP;
+			case WIN32 -> BEDROCK_WIN32;
+			case PS4 -> BEDROCK_PS4;
+			case NX -> BEDROCK_SWITCH;
+			case XBOX -> BEDROCK_XBOX;
+			case WINDOWS_PHONE -> BEDROCK_WINDOWS_PHONE;
+			default -> UNKNOWN;
+		};
 	}
 
 	public static Platform fromClientBrand(String brand) {
