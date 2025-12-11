@@ -5,7 +5,7 @@ velocityApi = "3.4.0-SNAPSHOT"
 floodgataApi = "2.2.3-SNAPSHOT"
 placeholderApi = "2.11.7"
 vivecraftVelocityExtensions = "1.1"
-shadow = "9.2.2"
+shadow = "9.3.0"
 
 [libraries]
 paperApi = { group = "io.papermc.paper", name = "paper-api", version.ref = "paperApi" }
