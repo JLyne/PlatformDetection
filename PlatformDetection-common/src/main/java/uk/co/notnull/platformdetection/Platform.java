@@ -8,6 +8,7 @@ public enum Platform {
 	JAVA("Java Edition", '\uE1DD'),
 	JAVA_FABRIC("Fabric", '\uE1DF', false, true),
 	JAVA_FORGE("Forge", '\uE1E0', false, true),
+	JAVA_NEOFORGE("NeoForge", '\uE1EE', false, true),
 	JAVA_VIVECRAFT("ViveCraft", '\uE1DC', false, true),
 	JAVA_VIVECRAFT_NOVR("ViveCraft - No VR", '\uE1DE', false, true),
 	JAVA_LUNAR("Lunar Client", '\uE1E2', false, true),
@@ -88,6 +89,10 @@ public enum Platform {
 
 		if(brand.startsWith("vanilla")) {
 			return JAVA;
+		}
+
+		if(brand.contains("neoforge")) {
+			return JAVA_NEOFORGE;
 		}
 
 		if(brand.contains("forge")) {
