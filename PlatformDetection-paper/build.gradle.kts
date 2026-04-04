@@ -24,7 +24,7 @@ tasks {
 paper {
     name = rootProject.name
     main = "uk.co.notnull.platformdetection.PlatformDetectionPaper"
-    apiVersion = libs.versions.paperApi.get().replace(Regex("\\-R\\d.\\d-SNAPSHOT"), "")
+    apiVersion = libs.versions.paperApi.get().replace(".build.+", "")
     authors = listOf("Jim (AnEnragedPigeon)")
     description = "Detects the platform/mod players are using"
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
