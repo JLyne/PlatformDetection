@@ -1,7 +1,7 @@
 [versions]
 pluginYmlPaper = "0.9.0"
 paperApi = "26.3.build.+"
-velocityApi = "4.2.1-SNAPSHOT"
+velocityApi = "4.3.0"
 floodgataApi = "2.2.3-SNAPSHOT"
 placeholderApi = "2.12.3"
 vivecraftVelocityExtensions = "1.1"
