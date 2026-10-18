@@ -44,7 +44,7 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/4.2.0/75b701cc958eacfe433a939211cae225d3437b70/velocity-api-4.2.0.jar" />
+          <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/4.2.1-SNAPSHOT/2290ffd59ea5a40c20ef621a9f5ada3cf383322b/velocity-api-4.2.1-SNAPSHOT.jar" />
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.google.inject/guice/7.0.0/ccc518677b9367d45f99dfa592c9b039f07687d3/guice-7.0.0.jar" />
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.7.1-jre/77e37866fb969b4ff6710faaefd3a86067730ada/guava-33.7.1-jre.jar" />
           <entry name="$USER_HOME$/.local/share/gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.2.4/c63b303adf59c733d2a96125ad6670e938a2c15d/caffeine-3.2.4.jar" />
